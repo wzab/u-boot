@@ -486,7 +486,7 @@ int do_ls(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 int do_omit(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
         int fstype)
 {
-	printf("arg1 %s \n",  arg[1] ); 	
+	printf("arg1 %s \n",  argv[1] ); 	
 	omitarg( argv[1], argv[2]); 
 	return 1 ; 
 
