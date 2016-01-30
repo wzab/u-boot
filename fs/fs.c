@@ -291,9 +291,9 @@ int omitarg(const char *var_name, const char *arg_name){
         int arg_len= strlen(arg_name);
 
         char *ptr= var_val ;
-        while( ptr = strstr(ptr ,arg_name) != NULL ){
+        while( (  (ptr = strstr(ptr ,arg_name)) != NULL ) ){
                 if( ( ptr== var_val || *(ptr-1) == ' ' || *(ptr-1) == '\n' || *(ptr-1) == '\t' ||*(ptr-1) == '=' ) &&
-                        ( *(ptr+len)==' ' || *(ptr+len)=='\n' || *(ptr+len)=='\t' || *(ptr+len)=='=' || *(ptr+len)=='\0') ){
+                        ( *(ptr+ arg_len)==' ' || *(ptr+arg_len)=='\n' || *(ptr+arg_len)=='\t' || *(ptr+arg_len)=='=' || *(ptr+arg_len)=='\0') ){
                         char *arg_loc = ptr;
                         while(*ptr!=' ' && *ptr!= '\t' && *ptr!= '\0'){
                                 *ptr=' ' ;
@@ -486,8 +486,8 @@ int do_ls(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 int do_omit(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
         int fstype)
 {
-	printf("arg1 %s \n" . arg[1] ); 	
-	omitarg( arg[1], arg[2]); 
+	printf("arg1 %s \n",  arg[1] ); 	
+	omitarg( argv[1], argv[2]); 
 	return 1 ; 
 
 }
