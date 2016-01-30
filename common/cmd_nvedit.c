@@ -316,12 +316,12 @@ int omitarg(const char *var_name, const char *arg_name){
 	while( ptr = strstr(ptr ,arg_name) != NULL ){
 		if( ( ptr== var_val || *(ptr-1) == ' ' || *(ptr-1) == '\n' || *(ptr-1) == '\t' ||*(ptr-1) == '=' ) &&
 			( *(ptr+len)==' ' || *(ptr+len)=='\n' || *(ptr+len)=='\t' || *(ptr+len)=='=' || *(ptr+len)=='\0') ){
+			char *arg_loc = ptr; 
 			while(*ptr!=' ' && *ptr!= '\t' && *ptr!= '\0'){
 				*ptr=' ' ;
 				ptr++;	
 			}
-			strcpy( arg_loc , ptr  );
-						
+			strcpy( arg_loc , ptr  );			
 			return 1; 
 		}
 		ptr = ptr + arg_len; 
