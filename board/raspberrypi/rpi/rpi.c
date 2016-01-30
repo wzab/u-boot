@@ -281,8 +281,10 @@ int misc_init_r(void)
 			if(atag_ptr->tag == ATAG_CMDLINE) {
 				char* old_cmdline = ptr + 8;
 				printf("Set bootargs_orig from ATAG\n");
+				/* Wael done by me */
 				setenv("bootargs_orig", old_cmdline);
 				setenv("pi_bootmode", "atag");
+				omitarg("bootargs_orig", "root");
 			}
 			ptr = ptr + (atag_ptr->size * 4);
 			atag_ptr=ptr;

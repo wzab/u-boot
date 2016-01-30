@@ -297,6 +297,28 @@ int setenv(const char *varname, const char *varvalue)
 }
 
 /**
+ * omit a single arg and its value from envirment variable.
+ * this single arg name should follow with white space, '\0' or '=' in case it has a value.
+ *
+ *
+ */
+
+int omitarg(const char *varname, const char *argname){
+	char *varval = getenv(varname) ;
+	printf("debug: varval = %s \n", varval);
+	if(varval==NULL){
+		printf("%s: No such env var.\n", varname );
+		return 0;		
+	}
+	char *ptr = strstr(varval ,argname );
+	while(*ptr!=' '&& *ptr!= '\0'){
+		*ptr=' ' ;
+		ptr++;	
+	}
+	return 1;
+}
+
+/**
  * Set an environment variable to an integer value
  *
  * @param varname	Environment variable to set
