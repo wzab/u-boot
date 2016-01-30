@@ -297,25 +297,36 @@ int setenv(const char *varname, const char *varvalue)
 }
 
 /**
- * omit a single arg and its value from envirment variable.
+ * Omit a single arg and its value from envirment variable.
  * this single arg name should follow with white space, '\0' or '=' in case it has a value.
- *
+ * 
  *
  */
-
-int omitarg(const char *varname, const char *argname){
-	char *varval = getenv(varname) ;
-	printf("debug: varval = %s \n", varval);
-	if(varval==NULL){
-		printf("%s: No such env var.\n", varname );
+int omitarg(const char *var_name, const char *arg_name){
+	char *var_val = getenv(var_name) ;
+	
+	printf("debug: var_val = %s \n", var_val);
+	if(var_val==NULL){
+		printf("%s: no such envirument variable.\n", var_name );
 		return 0;		
 	}
-	char *ptr = strstr(varval ,argname );
-	while(*ptr!=' '&& *ptr!= '\0'){
-		*ptr=' ' ;
-		ptr++;	
+	int arg_len= strlen(arg_name);
+	
+	char *ptr= var_val ;
+	while( ptr = strstr(ptr ,arg_name) != NULL ){
+		if( ( ptr== var_val || *(ptr-1) == ' ' || *(ptr-1) == '\n' || *(ptr-1) == '\t' ||*(ptr-1) == '=' ) &&
+			( *(ptr+len)==' ' || *(ptr+len)=='\n' || *(ptr+len)=='\t' || *(ptr+len)=='=' || *(ptr+len)=='\0') ){
+			while(*ptr!=' ' && *ptr!= '\t' && *ptr!= '\0'){
+				*ptr=' ' ;
+				ptr++;	
+			}
+			strcpy( arg_loc , ptr  );
+						
+			return 1; 
+		}
+		ptr = ptr + arg_len; 
 	}
-	return 1;
+	return 0;
 }
 
 /**
