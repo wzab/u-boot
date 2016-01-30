@@ -17,7 +17,7 @@
 #include <asm/arch/sdhci.h>
 #include <asm/global_data.h>
 #include <dm/platform_data/serial_pl01x.h>
-
+#include <fs.h>
 DECLARE_GLOBAL_DATA_PTR;
 
 static const struct bcm2835_gpio_platdata gpio_platdata = {
