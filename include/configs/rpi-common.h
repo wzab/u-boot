@@ -175,7 +175,11 @@
 	func(DHCP, dhcp, na)
 #include <config_distro_bootcmd.h>
 
+#define WZAB_LAB_SETTINGS \
+        "setenv rescue usb start;dhcp ${scriptaddr} ${srvip}:rescue.scr;source ${scriptaddr}\0" \
+
 #define CONFIG_EXTRA_ENV_SETTINGS \
+        WZAB_LAB_SETTINGS \
 	ENV_DEVICE_SETTINGS \
 	ENV_MEM_LAYOUT_SETTINGS \
 	BOOTENV
