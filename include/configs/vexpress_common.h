@@ -221,7 +221,11 @@
 		"scriptaddr=0xa8000000\0" \
 		"kernel_addr_r=0xa0008000\0"
 #endif
+#define WZAB_LAB_SETTINGS \
+        "rescue=dhcp ${scriptaddr} ${srvip}:rescue_vex.scr;source ${scriptaddr}\0" \
+
 #define CONFIG_EXTRA_ENV_SETTINGS \
+        WZAB_LAB_SETTINGS \
 		CONFIG_PLATFORM_ENV_SETTINGS \
                 BOOTENV \
 		"console=ttyAMA0,38400n8\0" \
