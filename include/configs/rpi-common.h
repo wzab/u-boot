@@ -176,7 +176,7 @@
 #include <config_distro_bootcmd.h>
 
 #define WZAB_LAB_SETTINGS \
-        "rescue=usb start;dhcp ${scriptaddr} ${srvip}:rescue.scr;source ${scriptaddr}\0" \
+        "rescue=load mmc 0:1 ${scriptaddr} rescue.scr;source ${scriptaddr}\0" \
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
         WZAB_LAB_SETTINGS \
